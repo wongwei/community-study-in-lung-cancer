@@ -1,6 +1,8 @@
 import numpy as np
 import re
 import pandas as pd
+import networkx as nx
+
 
 
 pprofile = pd.read_csv('lung_injury_case copy.csv',sep='\t',usecols=[*range(1,55)],header=None)

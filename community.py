@@ -1,5 +1,4 @@
 import numpy as np
-import re
 import pandas as pd
 import networkx as nx
 import matplotlib
@@ -28,6 +27,7 @@ with open('adj_idx_edges.txt') as f:
         if not line:
             break
 # print(i)
+color_map = ['r', 'g', 'b', 'orange', 'purple', 'yellow']
 for i in range(len(adjacent_edges)):
     for node in adjacent_edges[i]:
         G = nx.Graph()
@@ -37,7 +37,7 @@ edges_list = []
 
 network_edges_group = []
 
-for k in range(0, i-1):
+for k in range(0, 2):
     center = adjacent_edges[k][0]
     e = 0
     # loop from the second node to the end
@@ -48,6 +48,7 @@ for k in range(0, i-1):
         edges_list.append([center, nei1])
         G.add_edge(center, nei1)
         e = e+1  # count neighbour number
+        x = np.random.randint(5, size=1)
         for n2 in range(n1+1, len(adjacent_edges[k])):
             nei2 = adjacent_edges[k][n2]
             idx2 = adjacent_idx[k][n2]
@@ -57,11 +58,13 @@ for k in range(0, i-1):
                 edges_list.append([nei1, nei2])
                 G.add_edge(nei1, nei2)
                 # print(G.number_of_nodes())
-        nx.draw(G, pos=nx.spring_layout(G, k=0.25, iterations=50),node_size=100,with_labels = True)
-    
+        nx.draw(G, node_color=color_map[x[0]], pos=nx.spring_layout(
+            G, k=0.25, iterations=50), node_size=100, with_labels=True)
+
 # print(adjacent_edges)
 # print(G.number_of_nodes())
 # print(G.number_of_edges())
 # print(list(G.edges))
 # plt.subplot(121)
+plt.axis('off')
 plt.show()

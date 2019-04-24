@@ -35,6 +35,8 @@ for bigItem in allprofile:
         allprofile1.append(item)
 allprofile = np.array(allprofile1)
 allprofile = stats.zscore(allprofile)
-print(allprofile)
+concontrolprofile = allprofile[0:55]
+caseprofileprofile = allprofile[56:109]
+# print(allprofile)
 # print("pprofile:",len(pprofile))
 # print("mprofile:",len(mprofile))

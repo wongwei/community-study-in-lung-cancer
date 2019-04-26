@@ -75,3 +75,5 @@ for k in range(0, i-1):
 # plt.subplot(121)
 plt.axis('off')
 plt.show()
+
+# the label of this network is the index of lung_case

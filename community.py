@@ -1,9 +1,9 @@
 import numpy as np
-import pandas as pd
 import networkx as nx
 import matplotlib
 matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
+import pickle
 
 network_node_group = []
 i = 0
@@ -35,12 +35,12 @@ G = nx.Graph()
 #         G = nx.Graph()
 #         network_node_group.append(G.add_node(node))
 # print(len(network_group))
-edges_list = []
+
 # print(list(G.node))
 
-network_edges_group = []
+network_edges_group = {}
 for k in range(0, i-1):
-
+    edges_list = []
     center = adjacent_edges[k][0]
     e = 0
     # loop from the second node to the end
@@ -61,7 +61,8 @@ for k in range(0, i-1):
                 edges_list.append([nei1, nei2])
                 G.add_edge(nei1, nei2)
                 # print(G.number_of_nodes())
-
+    
+    network_edges_group[k]=edges_list   
     x = np.random.randint(5, size=1)
     # print(edges_list)
     
@@ -71,9 +72,12 @@ for k in range(0, i-1):
 # print(adjacent_edges)
 # print(G.number_of_nodes())
 # print(G.number_of_edges())
-
 # plt.subplot(121)
-plt.axis('off')
-plt.show()
+# plt.axis('off')
+# plt.show()
 
 # the label of this network is the index of lung_case
+file = open('network_edges_group.pickle', 'wb')
+pickle.dump(network_edges_group, file)
+file.close()
+
